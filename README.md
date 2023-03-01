@@ -1,5 +1,8 @@
 # ExIpns
 
+[![IPNS Unit and integration tests](https://github.com/bahner/ex-ipns/actions/workflows/testsuite.yaml/badge.svg)](https://github.com/bahner/ex-ipns/actions/workflows/testsuite.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/bahner/ex-ipns/badge.svg?branch=main)](https://coveralls.io/github/bahner/ex-ipns?branch=main)
+
 Elixir [IPNS][ipns] module. It is part of [ExIpfs][ex-ipfs] suite of modules.
 
 [IPNS][ipns] provides mutable data structures in [IPFS][ipfs] by creating CIDs that are backed by PKI signing. As such they are self-certifying. A thought experiment could be to publish your GPG public key to your IPNS address. An IPNS address can be likened to a verified website with TLS, but where the signer is implicitly verified. Not as a legal entity, but as a key.
