@@ -24,7 +24,7 @@ cover:
 	mix coveralls.html
 	xdg-open cover/excoveralls.html
 
-format:
+format: deps
 	mix format
 
 mix: all
@@ -43,7 +43,7 @@ release: tag
 tag:
 	git tag $(VERSION)
 
-test: dialyzer
+test: deps dialyzer
 	mix test
 
 distclean: clean

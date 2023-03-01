@@ -6,23 +6,43 @@ Elixir [IPNS][ipns] module. It is part of [ExIpfs][ex-ipfs] suite of modules.
 
 This module features both publication and key handling.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_ipns` to your list of dependencies in `mix.exs`:
+## Usage
 
 ```elixir
-def deps do
-  [
-    {:ex_ipns, "~> 0.0.1"}
-  ]
-end
+  iex(1)> ExIpns.Key.gen("foo")
+  {:ok,
+    %ExIpns.Key{
+      name: "foo",
+      id: "k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv"
+    }}
+  iex(2)> ExIpns.Name.publish("/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks", key: "foo")
+  {:ok,
+    %ExIpns.Name{
+      name: "k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv",
+      value: "/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks"
+    }}
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/ex_ipns>.
+  Then open your browser and browser to
+  `ipns://k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv/`
+
+   Your browser does support IPFS, doesn't it? :-)
+
+### Keys
+
+In the above example the key `foo` is the identity of your website. If you lose the key, you can't update the "web site" again. Ever. But if you do keep it safe, your "web site" is proofably yours. Or - someone who has the key's.
+
+*NB!* Outside the scope of this module or documentation it is possible to link this into the DNS namespace by using TXT RRs. Eg.
+
+```DNS
+_dnslink.myspace.bahner.com TXT dnslink=/ipns/k51qzi5uqu5dh36vwqrwttjcrwrl1ao5a8qx8rg851rrftqgso4x0ty586f68h
+```
+
+This way, if you lose the key, you can just point your DNS RR to the new id of a new key. So there is that.
+
+See the [DNSLINK documentation][dnslink] for this.
 
 [ex-ipfs]: https://hex.pm/packages/ex_ipfs "Core Elixir IPFS module"
 [ipfs]: https://ipfs.tech/ "Interplanetary File System"
 [ipns]: https://docs.ipfs.tech/concepts/ipns/ "Interplanetary Name System"
+[dnslink]: https://dnslink.dev/ "Link IPFS resources to DNS"

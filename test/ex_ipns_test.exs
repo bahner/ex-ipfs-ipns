@@ -1,20 +1,17 @@
-defmodule ExIpns.NameTest do
+defmodule ExIpnsTest do
   @moduledoc false
 
   use ExUnit.Case, async: true
 
-  alias ExIpns.Name
   alias ExIpns.Key
 
-  @key "exipns-name-test-key"
-
-  unless Key.exists?(@key) do
-    assert {:ok, _} = Key.gen("exipns-test")
-  end
+  @key "exipns-ExIpns-test-key"
 
   test "publish" do
+    Key.gen(@key)
+
     assert {:ok, _} =
-             Name.publish(
+             ExIpns.publish(
                "/ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z",
                key: @key
              )

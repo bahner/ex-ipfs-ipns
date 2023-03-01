@@ -1,7 +1,8 @@
+---
 # NB! This file is generated from templates/Dockerfile.
 # Make sure to make change to the template, not
 # the in situ file.
-name: IPFS Unit and integration tests
+name: IPNS Unit and integration tests
 
 on:
   push:
@@ -24,10 +25,10 @@ jobs:
       fail-fast: true
       matrix:
         otp: ["25.1.2"]
-        elixir: ["1.13.4", "1.14.3"]
+        elixir: ["1.14.3"]
     services:
       ipfs:
-        image: bahner/kubo:v0.17.0
+        image: ipfs/kubo:latest
         ports:
           - 5001:5001
     steps:

@@ -171,7 +171,7 @@ defmodule ExIpns.Key do
   ## Options
   ```
   [
-    ipns-base: <string>, # IPNS key base.
+    # ipns-base: <string>, # IPNS key base.
   ]
   ```
   """
@@ -212,15 +212,19 @@ defmodule ExIpns.Key do
     }
   end
 
-  @spec rename(map | tuple) :: rename() | Api.error_response()
-  defp rename(rename) when is_map(rename) do
-    %{
-      id: rename["Id"],
-      was: rename["Was"],
-      now: rename["Now"],
-      overwrite: rename["Overwrite"]
-    }
-  end
+  @spec rename(any) :: rename() | Api.error_response()
+  defp rename(data) do
+    case data do
+      {:error, response} ->
+        {:error, response}
 
-  defp rename({:error, data}), do: {:error, data}
+      rename ->
+        %{
+          id: rename["Id"],
+          was: rename["Was"],
+          now: rename["Now"],
+          overwrite: rename["Overwrite"]
+        }
+    end
+  end
 end

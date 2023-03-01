@@ -1,4 +1,4 @@
-defmodule ExIpns.Name do
+defmodule ExIpns do
   @moduledoc """
   MyspaceIPFS.Name is where the name commands of the IPFS API reside.
   """
@@ -32,13 +32,33 @@ defmodule ExIpns.Name do
     ipns-base: <string>, # IPNS key base.
   ]
   ```
+
+  ## Example
+  ```
+  iex(1)> ExIpns.Key.gen("foo")
+  {:ok,
+    %ExIpns.Key{
+      name: "foo",
+      id: "k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv"
+    }}
+  iex(2)> ExIpns.Name.publish("/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks", key: "foo")
+  {:ok,
+    %ExIpns.Name{
+      name: "k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv",
+      value: "/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks"
+    }}
+  ```
+  Then open your browser and browser to
+  `ipns://k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv/`
+
+  Your browser does support IPFS, doesn't it? :-)
   """
   @spec publish(Path.t(), list()) :: {:ok, any} | ExIpfs.Api.error_response()
-  def publish(path, opts \\ []),
-    do:
-      Api.post_query("/name/publish?arg=" <> path, query: opts)
-      |> new!()
-      |> okify()
+  def publish(path, opts \\ []) when is_binary(path) do
+    Api.post_query("/name/publish?arg=" <> path, query: opts)
+    |> new!()
+    |> okify()
+  end
 
   @doc """
   Resolve IPNS names.
