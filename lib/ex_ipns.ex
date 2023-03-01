@@ -1,6 +1,6 @@
 defmodule ExIpns do
   @moduledoc """
-  MyspaceIPFS.Name is where the name commands of the IPFS API reside.
+  Interplanetary Name System commands
   """
   import ExIpfs.Utils
 

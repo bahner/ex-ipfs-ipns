@@ -1,13 +1,13 @@
 defmodule ExIpns.MixProject do
   @moduledoc """
-  Elixir IPLD Mix Project
+  Elixir IPNS Mix Project
   """
   use Mix.Project
 
   def project do
     [
       app: :ex_ipns,
-      version: "0.0.1",
+      version: "0.0.2",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       package: package(),
@@ -43,7 +43,7 @@ defmodule ExIpns.MixProject do
   end
 
   defp description() do
-    "Interplanetary Linked Data for Elixir"
+    "Interplanetary Name System for Elixir"
   end
 
   defp package do
