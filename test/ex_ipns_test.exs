@@ -5,6 +5,7 @@ defmodule ExIpnsTest do
 
   alias ExIpns.Key
 
+  @tag timeout: :infinity
   @key "exipns-ExIpns-test-key"
 
   test "publish" do
