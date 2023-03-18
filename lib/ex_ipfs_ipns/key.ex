@@ -1,6 +1,6 @@
-defmodule ExIpns.Key do
+defmodule ExIpfsIpns.Key do
   @moduledoc """
-  ExIpns.Key module handles creating, listing, renaming, and removing IPNS keys.
+  ExIpfsIpns.Key module handles creating, listing, renaming, and removing IPNS keys.
 
   Keys are what generates an IPNS name. The key is a cryptographic key pair, and the name is a hash of the public key. The name is what is used to resolve the IPNS name.
   """
@@ -62,6 +62,23 @@ defmodule ExIpns.Key do
   def gen(keys, opts) when is_list(keys) do
     Enum.map(keys, fn key -> gen!(key, opts) end)
     |> okify()
+  end
+
+  @doc """
+  Returns the IPNS key for the given name.
+
+  ## Parameters
+  `name` - Name of the key to search for.
+  `search_type` - Type of search criteria. Defaults to `:name
+            If you want to search for the name of a key, use `:id`
+            and provide the key id instead.
+  """
+  @spec get_or_create(binary(), atom) :: {:ok, t()} | ExIpfs.Api.error_response()
+  def get_or_create(name, search_type \\ :name) do
+    case ExIpfsIpns.Key.exists?(name) do
+      true -> ExIpfsIpns.Key.search(name, search_type)
+      false -> ExIpfsIpns.Key.gen(name)
+    end
   end
 
   @doc """
@@ -128,10 +145,22 @@ defmodule ExIpns.Key do
 
   @doc """
   Check if a keypair exists. This search both the name and id of the keypair.
+
+  ## Parameters
+  `key` - Name of the key to search for.
+  `search_type` - Type of search criteria. Defaults to `:both`
+            If you want to search for the `id` of a key, use `:name`
+            and provide the key name.
+            If you want to search for the `name` of a key, use `:id`
+            and provide the key id.
   """
-  @spec exists?(binary) :: boolean
-  def exists?(key) when is_binary(key) do
-    search(key) != nil and search(key, :id) != nil
+  @spec exists?(binary, atom) :: boolean
+  def exists?(key, search_type \\ :both) when is_binary(key) do
+    case search_type do
+      :both -> search(key) != nil or search(key, :id) != nil
+      :name -> search(key) != nil
+      :id -> search(key, :id) != nil
+    end
   end
 
   @doc """

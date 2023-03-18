@@ -1,4 +1,4 @@
-defmodule ExIpns do
+defmodule ExIpfsIpns do
   @moduledoc """
   Interplanetary Name System commands
   """
@@ -35,15 +35,15 @@ defmodule ExIpns do
 
   ## Example
   ```
-  iex(1)> ExIpns.Key.gen("foo")
+  iex(1)> ExIpfsIpns.Key.gen("foo")
   {:ok,
-    %ExIpns.Key{
+    %ExIpfsIpns.Key{
       name: "foo",
       id: "k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv"
     }}
-  iex(2)> ExIpns.Name.publish("/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks", key: "foo")
+  iex(2)> ExIpfsIpns.Name.publish("/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks", key: "foo")
   {:ok,
-    %ExIpns.Name{
+    %ExIpfsIpns.Name{
       name: "k51qzi5uqu5dhxwb3x7bjg8k73tlkaqfugy217mgpf3vpdmoqn9du2qp865ddv",
       value: "/ipfs/QmWGeRAEgtsHW3ec7U4qW2CyVy7eA2mFRVbk1nb24jFyks"
     }}
