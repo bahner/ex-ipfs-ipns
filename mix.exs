@@ -7,13 +7,13 @@ defmodule ExIpfsIpns.MixProject do
   def project do
     [
       app: :ex_ipfs_ipns,
-      version: "0.0.3",
+      version: "0.0.4",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: description(),
       deps: deps(),
-      source_url: "https://github.com/bahner/ex_ipfs_ipns.git",
+      source_url: "https://github.com/bahner/ex-ipfs-ipns.git",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,

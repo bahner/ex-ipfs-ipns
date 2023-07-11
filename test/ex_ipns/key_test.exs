@@ -43,7 +43,7 @@ defmodule ExIpfsIpns.KeyTest do
     Key.gen(search_key)
     Key.rm(non_existent_key)
 
-    result =  Key.search(non_existent_key, :name)
+    result = Key.search(non_existent_key, :name)
     assert is_nil(result)
     result = Key.search(non_existent_key, :id)
     assert is_nil(result)
@@ -57,6 +57,5 @@ defmodule ExIpfsIpns.KeyTest do
     assert not is_nil(result.id)
 
     Key.rm(search_key)
-
   end
 end
