@@ -7,7 +7,7 @@ defmodule ExIpfsIpns.MixProject do
   def project do
     [
       app: :ex_ipfs_ipns,
-      version: "0.0.4",
+      version: "0.0.5",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       package: package(),
