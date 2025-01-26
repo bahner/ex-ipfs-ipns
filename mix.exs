@@ -7,8 +7,8 @@ defmodule ExIpfsIpns.MixProject do
   def project do
     [
       app: :ex_ipfs_ipns,
-      version: "0.0.5",
-      elixir: "~> 1.14",
+      version: "0.0.6",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: description(),
@@ -34,7 +34,7 @@ defmodule ExIpfsIpns.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_ipfs, "~> 0.1.2"},
+      {:ex_ipfs, "~> 0.1.9"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.29", only: :dev, runtime: false},
